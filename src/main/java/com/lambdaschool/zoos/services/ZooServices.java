@@ -7,4 +7,5 @@ import java.util.List;
 public interface ZooServices {
 
     List<Zoo> getAllZoos();
+    Zoo findZooById(long zooid);
 }

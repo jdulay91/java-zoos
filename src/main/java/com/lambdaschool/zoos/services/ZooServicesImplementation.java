@@ -5,6 +5,7 @@ import com.lambdaschool.zoos.repository.ZooRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,5 +19,10 @@ public class ZooServicesImplementation implements ZooServices{
         List<Zoo> list = new ArrayList<>();
         zoorepos.findAll().iterator().forEachRemaining(list::add);
         return list;
+    }
+
+    @Override
+    public Zoo findZooById(long zooid) {
+        return zoorepos.findById(zooid).orElseThrow(()-> new EntityNotFoundException("ZOO with id of  " + zooid + " Not Valid"));
     }
 }
